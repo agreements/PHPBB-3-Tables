@@ -1,0 +1,42 @@
+//Examples
+
+[table]{TEXT}[/table]
+
+
+//HTML replacement
+
+<script language="Javascript">
+var texto = '{TEXT}';
+texto = texto.replace("\r\n","");
+texto = texto.replace("<br>","");
+
+texto = texto.replace(" ","");
+var linha = new Array();
+linha = texto.split('L=');
+var table = '<div align="center"><TABLE width=100% cellpadding=1 cellspacing=1 border=0>';
+for (var i=1; i<linha.length; i++)
+{
+  table = table + '<TR>';
+  var coluna = new Array();
+  coluna = linha[i].split('%');
+  for (var j=0; j<coluna.length; j++)
+  {
+    if (i == 1)
+    {
+      table = table + '<TD align=center style="background: #000000; font-size:14px; color:yellow; font-family:Lucida Console, Courier, Monotype;"><b>' + coluna[j].replace("amp;","") + '</b></TD>';      
+    }
+    else
+    {
+      table = table + '<TD style="background: #000000; font-size:14px; color:lightgreen; font-family:Lucida Console, Courier, Monotype;">' + '&nbsp;' + coluna[j].replace("amp;","") + '</TD>';      
+    }
+
+  }
+  table = table + '<TR>';
+}
+table = table + '</TABLE></div>';
+document.write(table);
+</script>
+
+//Helpline
+
+[table] L=Agreements&Agreements%Agreements L=Agreements&Agreements%Agreements L=Agreements%Agreements%Agreements L=Agreements%Agreements%Agreements [/table]
